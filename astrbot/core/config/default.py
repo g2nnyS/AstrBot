@@ -455,6 +455,7 @@ CONFIG_METADATA_2 = {
                         "telegram_command_auto_refresh": True,
                         "telegram_command_register_interval": 300,
                         "telegram_polling_restart_delay": 5.0,
+                        "telegram_reply_to_message": "off",
                     },
                     "Discord": {
                         "id": "discord",
@@ -773,6 +774,13 @@ CONFIG_METADATA_2 = {
                         "description": "Telegram 轮询重启延迟",
                         "type": "float",
                         "hint": "当轮询意外结束尝试自动重启时的延迟时间，理论上越短恢复越快，但过短（<0.1s）可能导致死循环针对 API 服务器的请求阻断。单位为秒。默认为 5s。",
+                    },
+                    "telegram_reply_to_message": {
+                        "description": "Telegram 回复时引用消息",
+                        "type": "string",
+                        "options": ["off", "private", "group", "all"],
+                        "labels": ["关闭", "仅私聊", "仅群聊", "私聊和群聊"],
+                        "hint": "机器人回复时是否引用（reply to）触发该回复的原消息。off：关闭；private：仅私聊；group：仅群聊；all：私聊和群聊都引用。默认 off。",
                     },
                     "id": {
                         "description": "机器人名称",
@@ -1594,8 +1602,6 @@ CONFIG_METADATA_2 = {
                         "api_key": "",
                         "api_base": "https://api.xiaomimimo.com/v1",
                         "model": "mimo-v2-omni",
-                        "mimo-stt-system-prompt": "You are a speech transcription assistant. Transcribe the spoken content from the audio exactly and return only the transcription text.",
-                        "mimo-stt-user-prompt": "Please transcribe the content of the audio and return only the transcription text.",
                         "timeout": "20",
                         "proxy": "",
                     },
@@ -2597,16 +2603,6 @@ CONFIG_METADATA_2 = {
                         "description": "超时时间",
                         "type": "int",
                         "hint": "超时时间，单位为秒。",
-                    },
-                    "mimo-stt-system-prompt": {
-                        "description": "系统提示词",
-                        "type": "string",
-                        "hint": "用于指导 MiMo STT 转录行为的 system prompt。",
-                    },
-                    "mimo-stt-user-prompt": {
-                        "description": "用户提示词",
-                        "type": "string",
-                        "hint": "附加给 MiMo STT 的用户提示词，用于约束返回结果格式。",
                     },
                     "openai-tts-voice": {
                         "description": "voice",
